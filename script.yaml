@@ -1,0 +1,13 @@
+- name: Transfer and execute a script.
+  hosts: all
+  remote_user: root
+  tasks: 
+   - name: Transfer the script
+     copy: src=/home/ansible1/suur-script1.sh dest=/home/ mode=0777
+
+   - name: Execute the script
+     shell: /home/suur-script1.sh > /home/output.txt
+
+   - fetch:
+       src: /home/output.txt
+       dest: /home/ansible1/Fetched
